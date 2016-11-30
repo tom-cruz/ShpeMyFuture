@@ -1,5 +1,5 @@
 import googlemaps
-import urllib, json
+import urllib, json, ranking
 
 def GoogPlac(lat,lng,radius,types,key):
 	AUTH_KEY = key

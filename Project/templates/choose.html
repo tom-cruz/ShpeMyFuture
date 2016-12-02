@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+	.button {
+	  display: inline-block;
+	  border-radius: 4px;
+	  background-color: #6E2C00;
+	  border: none;
+	  color: #FFFFFF;
+	  text-align: center;
+	  font-size: 24px;
+	  padding: 20px;
+	  width: 250px;
+	  transition: all 0.5s;
+	  cursor: pointer;
+	  margin: 5px;
+	}
+
+	.button span {
+	  cursor: pointer;
+	  display: inline-block;
+	  position: relative;
+	  transition: 0.5s;
+	}
+
+	.button span:after {
+	  content: '»';
+	  position: absolute;
+	  opacity: 0;
+	  top: 0;
+	  right: -20px;
+	  transition: 0.5s;
+	}
+
+	.button:hover span {
+	  padding-right: 25px;
+	}
+
+	.button:hover span:after {
+	  opacity: 1;
+	  right: 0;
+	}
+	</style>
+</head>
+<body>
+
+<button class="button" style="position:relative;left 100px;top:250px" <onclick="window.location.href='{{ url_for('profession1') }}'" >
+	<span>
+		Profession 1 
+	</span>
+</button>
+<button class="button" style="position:absolute;left 450px;top:250px;background-color:gold">
+	<span>Profession 2 </span>
+</button>
+<button class="button" style="position:absolute;left:450px;top:300px;background-color:#E7E7E7">
+	<span>Profession 3 </span>
+</button>
+<button class="button" style="position:absolute;left 100px;top:350px;background-color:red">
+	<span>Profession 4 </span></button>
+</body>
+</html>
+

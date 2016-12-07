@@ -34,12 +34,33 @@ def LatLngParsing ():
 	y=[]
 	y.extend(outputParsed[3::4])
 	
-	with open('latlng.json','w') as outfile:
+	# with open('latlng.json','w') as outfile:
+	# 	for item1,item2 in zip(x,y):
+	# 		outfile.write(dumps({'lat':item1,'lng':item2},outfile))
+	
+	# adds the lat and long		
+	with open('prof1-middle.html','w') as outfile:
 		for item1,item2 in zip(x,y):
-			outfile.write(dumps({'lat':item1,'lng':item2},outfile))
-			
+			outfile.write('        new google.maps.LatLng(' + item1 + ', ' + item2 + '),\n')
+
+	# deletes the last comma
+	with open('prof1-middle.html', 'rb+') as f:
+	    f.seek(0,2)                 # end of file
+	    size=f.tell()               # the size...
+	    f.truncate(size-2)			# deletes the last comma
+
+	# copy prof-top to results file
+	filenames = ['prof1-top.html', 'prof1-middle.html', 'prof1-bottom.html']
+	with open('./templates/prof1.html', 'w') as outfile:
+	    for fname in filenames:
+	        with open(fname) as infile:
+	            for line in infile:
+	                outfile.write(line)
+
+
+
 	return;
 
 #For testing purposes
-BizHubSearch("Doctor", types.TYPE_DOCTOR)
-LatLngParsing()
+# BizHubSearch("Doctor", types.TYPE_DOCTOR)
+# LatLngParsing()

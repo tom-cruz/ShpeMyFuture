@@ -1,6 +1,7 @@
 import googleplaces
 from googleplaces import GooglePlaces, types, lang, ranking
 import re, json, itertools
+from json import dumps, load
 
 YOUR_API_KEY= 'AIzaSyDFu4TmJ0nqqCl3ZyRRBxe1Pkk8E8Onahs'
 
@@ -33,8 +34,9 @@ def LatLngParsing ():
 	y=[]
 	y.extend(outputParsed[3::4])
 	
-	for item1,item2 in zip(x,y):
-		jsonData = json.dumps({'lat':item1,'lng':item2})
+	with open('latlng.txt','w') as outfile:
+		for item1,item2 in zip(x,y):
+			outfile.write(dumps({'lat':item1,'lng':item2},outfile))
 			
 	return;
 

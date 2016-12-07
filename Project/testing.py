@@ -7,7 +7,8 @@ import re
 import csv
 
 f = open('cleaning.txt', 'w')
-
+x = []
+y = []
 YOUR_API_KEY= 'AIzaSyDFu4TmJ0nqqCl3ZyRRBxe1Pkk8E8Onahs'
 
 google_places = GooglePlaces(YOUR_API_KEY)
@@ -25,21 +26,26 @@ query_result = google_places.nearby_search(
 for place in query_result.places:
     loc = place.geo_location
     s = str(loc)
-    result = re.sub('[^0-9, ]', '', s)
-    f.write(result + "\n")
+    #result = re.sub('[^0-9, ]', '', s)
+    f.write(s+"\n")
 
 
 
 
-"""
+
 f=open('cleaning.txt', 'r')
 queryOutput = f.read()
-outputParsed = re.findall(r'Decimal("'"\d+.\d'"),', queryOutput)
+outputParsed = re.split('(\d+.\d+\d|-\d+.\d+\d)', queryOutput)
+outputParsed.extend(outputParsed[1::5])
+#s = str(outputParsed)
+
 with open('latlng','wb') as csvfile:
 	writer = csv.writer(csvfile)
  	for item in outputParsed:
- 		writer.writerow([item])  
- """
+ 		writer.writerow([item])
+
+
+
     # Returned places from a query are place summaries.
 	#data = open("placesDump.txt","w")
 	#data.write(str(query_result))

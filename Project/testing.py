@@ -1,7 +1,7 @@
 import googleplaces
 from googleplaces import GooglePlaces, types, lang, ranking
 import re, json, itertools
-from json import dumps, load
+from json import dumps
 
 YOUR_API_KEY= 'AIzaSyDFu4TmJ0nqqCl3ZyRRBxe1Pkk8E8Onahs'
 
@@ -34,25 +34,12 @@ def LatLngParsing ():
 	y=[]
 	y.extend(outputParsed[3::4])
 	
-	with open('latlng.txt','w') as outfile:
+	with open('latlng.json','w') as outfile:
 		for item1,item2 in zip(x,y):
 			outfile.write(dumps({'lat':item1,'lng':item2},outfile))
 			
 	return;
 
-"""	with open('lat.txt','wb') as csvfile:
-		writer = csv.writer(csvfile)
-	 	for item in x:
-	 		writer.writerow([item])
-
-	y=[]
-	y.extend(outputParsed[3::4])
-
-	with open('lng.txt','wb') as csvfile:	
-	 	writer = csv.writer(csvfile)
-	 	for item in y:
-	 		writer.writerow([item])
-	return;"""
-
+#For testing purposes
 BizHubSearch("Doctor", types.TYPE_DOCTOR)
 LatLngParsing()
